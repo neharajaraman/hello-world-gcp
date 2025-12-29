@@ -1,6 +1,6 @@
 steps:
+   # Build image using docker builder
 - name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'bash'
   args: 
   [
     'build',
