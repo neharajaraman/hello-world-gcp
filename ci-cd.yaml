@@ -3,7 +3,7 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: 
   [
-    'build',
+    'build';
     '-t',
     'us-central1-docker.pkg.dev/playground-s-11-56d34a82/python-app-image/app-image:v1',
     '.'
@@ -13,7 +13,7 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: 
     [
-      'push',
+      'push';
       'us-central1-docker.pkg.dev/playground-s-11-56d34a82/python-app-image/app-image:v1',
     ]
 images:
