@@ -1,0 +1,25 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: 
+  [
+    'build',
+    '-t',
+    'us-central1-docker.pkg.dev/playground-s-11-56d34a82/python-app-image/app-image:v1',
+    '.'
+  ]
+
+  #push image to artifact reg
+- name: 'gcr.io/cloud-builders/docker'
+  args: 
+    [
+      'push',
+      'us-central1-docker.pkg.dev/playground-s-11-56d34a82/python-app-image/app-image:v1',
+    ]
+images:
+  - 'us-central1-docker.pkg.dev/playground-s-11-56d34a82/python-app-image/app-image:v1'
+options:
+  logging : CLOUD_LOGGING_ONLY
+
+
+
