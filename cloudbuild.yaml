@@ -1,0 +1,33 @@
+ steps:
+
+# Step 1 - Build Docker image
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+    - 'build'
+    - '-t'
+    - 'asia-south1-docker.pkg.dev/$PROJECT_ID/hello-world-repo/hello-world:$SHORT_SHA'
+    - '.'
+
+# Step 2 - Push Docker image to Artifact Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+    - 'push'
+    - 'asia-south1-docker.pkg.dev/$PROJECT_ID/hello-world-repo/hello-world:$SHORT_SHA'
+
+# Step 3 - Deploy image to Cloud Run
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args:
+    - 'run'
+    - 'deploy'
+    - 'hello-world'
+    - '--image'
+    - 'asia-south1-docker.pkg.dev/$PROJECT_ID/hello-world-repo/hello-world:$SHORT_SHA'
+    - '--region'
+    - 'asia-south1'
+    - '--platform'
+    - 'managed'
+    - '--allow-unauthenticated'
+
+images:
+- 'asia-south1-docker.pkg.dev/$PROJECT_ID/hello-world-repo/hello-world:$SHORT_SHA'
