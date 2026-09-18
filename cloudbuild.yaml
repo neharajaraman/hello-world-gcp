@@ -29,4 +29,6 @@ steps:
 
 images:
 - 'asia-south-1-docker.pkg.dev/test-project-509009/test-hello-world-repo/hello-world:$SHORT_SHA'
+options:
+  logging: CLOUD_LOGGING_ONLY
 
